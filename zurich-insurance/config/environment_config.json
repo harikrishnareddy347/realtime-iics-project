@@ -1,0 +1,57 @@
+{
+  "application": {
+    "name": "Zurich Insurance IICS Practice",
+    "version": "1.0.0",
+    "environment": "${ENVIRONMENT}",
+    "debug_mode": false
+  },
+  "iics": {
+    "pod": "us1.informatica.com",
+    "organization": "zurich_insurance",
+    "user": "${IICS_USER}",
+    "password": "${IICS_PASSWORD}"
+  },
+  "data_integration": {
+    "secure_agent_group": "insurance_agents",
+    "max_runtime_memory_mb": 2048,
+    "max_parallel_tasks": 5,
+    "thread_pool_size": 16
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "JSON",
+    "destinations": [
+      "FILE:/var/logs/iics/",
+      "ELASTICSEARCH:logs-zurich-*"
+    ],
+    "retention_days": 30
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics_collection_interval_seconds": 60,
+    "alert_on_error": true,
+    "alert_on_slow_execution": true,
+    "slow_execution_threshold_seconds": 300
+  },
+  "notifications": {
+    "email": {
+      "smtp_host": "mail.zurich.local",
+      "smtp_port": 587,
+      "sender": "iics-alerts@zurich.com"
+    },
+    "slack": {
+      "webhook_url": "${SLACK_WEBHOOK_URL}",
+      "channel": "#insurance-alerts"
+    },
+    "pagerduty": {
+      "api_key": "${PAGERDUTY_API_KEY}",
+      "enabled_for_critical": true
+    }
+  },
+  "compliance": {
+    "data_encryption": "AES-256",
+    "audit_logging": true,
+    "retention_policy": "GDPR_COMPLIANT",
+    "data_classification": "CONFIDENTIAL"
+  }
+}

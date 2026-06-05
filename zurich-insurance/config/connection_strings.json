@@ -1,0 +1,66 @@
+{
+  "environments": {
+    "dev": {
+      "database": {
+        "host": "dev-db.internal",
+        "port": 5432,
+        "database": "zurich_insurance_dev",
+        "username": "iics_user_dev",
+        "password": "${DB_PASSWORD_DEV}",
+        "connection_string": "jdbc:postgresql://dev-db.internal:5432/zurich_insurance_dev"
+      },
+      "source_system": {
+        "type": "LEGACY_MAINFRAME",
+        "host": "legacy-sys.internal",
+        "port": 1433,
+        "database": "InsuranceSource",
+        "connection_pool_size": 5
+      },
+      "api_endpoint": "https://dev-api.zurich.local/v1"
+    },
+    "test": {
+      "database": {
+        "host": "test-db.internal",
+        "port": 5432,
+        "database": "zurich_insurance_test",
+        "username": "iics_user_test",
+        "password": "${DB_PASSWORD_TEST}",
+        "connection_string": "jdbc:postgresql://test-db.internal:5432/zurich_insurance_test"
+      },
+      "source_system": {
+        "type": "LEGACY_MAINFRAME",
+        "host": "legacy-sys-test.internal",
+        "port": 1433,
+        "database": "InsuranceSource_Test",
+        "connection_pool_size": 5
+      },
+      "api_endpoint": "https://test-api.zurich.local/v1"
+    },
+    "prod": {
+      "database": {
+        "host": "prod-db.internal",
+        "port": 5432,
+        "database": "zurich_insurance_prod",
+        "username": "iics_user_prod",
+        "password": "${DB_PASSWORD_PROD}",
+        "connection_string": "jdbc:postgresql://prod-db.internal:5432/zurich_insurance_prod",
+        "connection_pool_size": 20,
+        "ssl_enabled": true
+      },
+      "source_system": {
+        "type": "LEGACY_MAINFRAME",
+        "host": "legacy-sys-prod.internal",
+        "port": 1433,
+        "database": "InsuranceSource",
+        "connection_pool_size": 20,
+        "ssl_enabled": true
+      },
+      "api_endpoint": "https://api.zurich.com/v1"
+    }
+  },
+  "security": {
+    "use_vault": true,
+    "vault_endpoint": "https://vault.zurich.local",
+    "auth_method": "LDAP"
+  }
+}
